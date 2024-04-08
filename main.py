@@ -505,12 +505,12 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
-    MainWindow.hide()
+    MainWindow.show()
 
     # SplashScreenWindow
-    splash_screen_window = splashscreen.SplashScreenWindow(MainWindow)
-    splash_screen_window.show()
-    QTimer.singleShot(2500, splash_screen_window.close)
+    # splash_screen_window = splashscreen.SplashScreenWindow(MainWindow)
+    # splash_screen_window.show()
+    # QTimer.singleShot(2500, splash_screen_window.close)
 
     # Run the application!
     #sys.exit(app.exec_())
