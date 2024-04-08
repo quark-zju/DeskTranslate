@@ -23,6 +23,7 @@ class Worker(QtCore.QObject):
         self.running = True
         self.translator_engine = translator_engine
         self.current_extracted_text = None
+        self.last_extracted_text = None
         self.img_lang = img_lang.lower()
         self.trans_lang = trans_lang.lower()
 
@@ -39,6 +40,12 @@ class Worker(QtCore.QObject):
             print(f"EXTRACTED TEXT: [{new_extracted_text}]")
 
             if len(new_extracted_text) < 1 or len(new_extracted_text) > 4999:
+                time.sleep(0.5)
+                continue
+
+            if self.last_extracted_text != new_extracted_text:
+                self.last_extracted_text = new_extracted_text
+                time.sleep(0.3)
                 continue
 
             if self.current_extracted_text != new_extracted_text and new_extracted_text:
