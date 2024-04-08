@@ -32,8 +32,12 @@ class Worker(QtCore.QObject):
 
     def run(self):
         while self.running:
-            img = ImageGrab.grab(bbox=(self.x1, self.y1, self.x2, self.y2))
-            img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+            try:
+                img = ImageGrab.grab(bbox=(self.x1, self.y1, self.x2, self.y2))
+                img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+            except Exception:
+                time.sleep(0.5)
+                continue
 
             new_extracted_text = pytesseract.image_to_string(img, lang=self.image_lang_code).strip()
             new_extracted_text = " ".join(new_extracted_text.split())
