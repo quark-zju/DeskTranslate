@@ -27,6 +27,7 @@ class Ui_translateWindow(QtWidgets.QMainWindow):
 
         font = QtGui.QFont()
         font.setPointSize(12)
+        font.setFamilies(['Microsoft YaHei', 'Seagoe UI'])
 
         self.translated_text_label.setFont(font)
         self.translated_text_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
