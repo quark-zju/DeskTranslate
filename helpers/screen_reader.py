@@ -5,10 +5,6 @@ import numpy as np
 import pytesseract
 from PIL import ImageGrab
 from PyQt6 import QtWidgets, QtCore, QtGui
-from deep_translator import (GoogleTranslator,
-                             PonsTranslator,
-                             MyMemoryTranslator,
-                             LingueeTranslator)
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -54,6 +50,7 @@ class Worker(QtCore.QObject):
                 print(self.img_lang, self.trans_lang)
                 if self.translator_engine == "GoogleTranslator":
                     try:
+                        from deep_translator import GoogleTranslator
                         translated_text = GoogleTranslator(source='auto', target=self.trans_lang_code).translate(
                             new_extracted_text)
                         print(f"TRANSLATED TEXT: [{translated_text}]")
@@ -61,6 +58,7 @@ class Worker(QtCore.QObject):
                         print("unsupported by GoogleTranslate")
                 elif self.translator_engine == "PonsTranslator":
                     try:
+                        from deep_translator import PonsTranslator
                         translated_text = PonsTranslator(source=self.img_lang, target=self.trans_lang).translate(
                             new_extracted_text)
                         print(f"TRANSLATED TEXT: [{translated_text}]")
@@ -68,6 +66,7 @@ class Worker(QtCore.QObject):
                         print("unsupported by PonsTranslator")
                 elif self.translator_engine == "LingueeTranslator":
                     try:
+                        from deep_translator import LingueeTranslator
                         translated_text = LingueeTranslator(source=self.img_lang, target=self.trans_lang).translate(
                             new_extracted_text)
                         print(f"TRANSLATED TEXT: [{translated_text}]")
@@ -75,6 +74,7 @@ class Worker(QtCore.QObject):
                         print("unsupported by LingueeTranslator")
                 else:
                     try:
+                        from deep_translator import MyMemoryTranslator
                         translated_text = MyMemoryTranslator(source=self.img_lang, target=self.trans_lang).translate(
                             new_extracted_text)
                         print(f"TRANSLATED TEXT: [{translated_text}]")
