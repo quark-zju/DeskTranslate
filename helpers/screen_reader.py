@@ -62,7 +62,7 @@ class Worker(QtCore.QObject):
                 if self.translator_engine == "OllamaTranslator":
                     try:
                         from . import ollama_translate
-                        set_pending = lambda x: self.ui.translated_text_label.setText(x)
+                        set_pending = lambda x: self.ui.set_text(x)
                         translated_text = ollama_translate.translate(new_extracted_text, set_pending=set_pending)
                         print(f"TRANSLATED TEXT: [{translated_text}]")
                     except Exception:
@@ -100,7 +100,7 @@ class Worker(QtCore.QObject):
                     except Exception:
                         print("unsupported by MyMemoryTranslator")
 
-                self.ui.translated_text_label.setText(translated_text)
+                self.ui.set_text(translated_text)
                 if self.is_text2speech_enabled:
                     import pyttsx3
 

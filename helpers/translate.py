@@ -63,6 +63,9 @@ class Ui_translateWindow(QtWidgets.QMainWindow):
     def set_worker(self, worker):
         self.worker = worker
 
+    def set_text(self, text):
+        self.translated_text_label.setText(text.replace('\n\n', '\n').rstrip())
+
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("translateWindow", "DeskTranslator"))
