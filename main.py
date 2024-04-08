@@ -45,7 +45,7 @@ for i in range(0, length1):
 
 
 class Ui_MainWindow(object):
-    translator_engine = "GoogleTranslator"
+    translator_engine = "OllamaTranslator"
 
     def on_click_select_borders(self):
         global borders_selected
@@ -345,7 +345,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.engine_dropdown, 3, 1, 1, 1)
 
         # dropdown for font size
-        translator_engines = ["GoogleTranslator", "PonsTranslator", "LingueeTranslator", "MyMemoryTranslator"]
+        translator_engines = ["OllamaTranslator", "GoogleTranslator", "PonsTranslator", "LingueeTranslator", "MyMemoryTranslator"]
         self.engine_dropdown.addItems(list(map(str, translator_engines)))
         self.engine_dropdown.currentTextChanged.connect(self.on_click_engine_changed)
 

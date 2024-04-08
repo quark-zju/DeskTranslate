@@ -8,7 +8,6 @@ from PyQt6 import QtWidgets, QtCore, QtGui
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-
 class Worker(QtCore.QObject):
     def __init__(self, snip_window, image_lang_code, trans_lang_code, is_text2speech_enabled, ui, translator_engine,
                  img_lang, trans_lang):
@@ -48,7 +47,15 @@ class Worker(QtCore.QObject):
 
                 translated_text = ""
                 print(self.img_lang, self.trans_lang)
-                if self.translator_engine == "GoogleTranslator":
+                if self.translator_engine == "OllamaTranslator":
+                    try:
+                        from . import ollama_translate
+                        set_pending = lambda x: self.ui.translated_text_label.setText(x)
+                        translated_text = ollama_translate.translate(new_extracted_text, set_pending=set_pending)
+                        print(f"TRANSLATED TEXT: [{translated_text}]")
+                    except Exception:
+                        print("unsupported by OllamaTranslator")
+                elif self.translator_engine == "GoogleTranslator":
                     try:
                         from deep_translator import GoogleTranslator
                         translated_text = GoogleTranslator(source='auto', target=self.trans_lang_code).translate(
