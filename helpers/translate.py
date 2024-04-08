@@ -13,7 +13,7 @@ class Ui_translateWindow(QtWidgets.QMainWindow):
     def __init__(self, opacity_slider):
         super().__init__()
         self.setObjectName("translateWindow")
-        self.resize(800, 161)
+        self.resize(500, 80)
 
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
