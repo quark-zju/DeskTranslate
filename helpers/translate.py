@@ -37,20 +37,21 @@ class Ui_translateWindow(QtWidgets.QMainWindow):
 
         self.setCentralWidget(self.centralwidget)
 
-        self.menubar = QtWidgets.QMenuBar(self)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
-        self.menubar.setObjectName("menubar")
+        if False:
+            self.menubar = QtWidgets.QMenuBar(self)
+            self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+            self.menubar.setObjectName("menubar")
 
-        self.setMenuBar(self.menubar)
+            self.setMenuBar(self.menubar)
 
-        self.statusbar = QtWidgets.QStatusBar(self)
-        self.statusbar.setObjectName("statusbar")
-        self.setStatusBar(self.statusbar)
+            self.statusbar = QtWidgets.QStatusBar(self)
+            self.statusbar.setObjectName("statusbar")
+            self.setStatusBar(self.statusbar)
 
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
 
-        self.setWindowFlags(
+        self.setWindowFlags(            
             QtCore.Qt.WindowType.Window |
             QtCore.Qt.WindowType.CustomizeWindowHint |
             QtCore.Qt.WindowType.WindowTitleHint |
