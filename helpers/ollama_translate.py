@@ -21,7 +21,9 @@ def translate(text: str, set_pending=None, prompt='将下文翻译成中文：',
             continue
         result += value
         if set_pending:
-            set_pending(result)
+            set_pending(result.rstrip())
+
+    result = result.rstrip()
     
     _cache[text] = result
     return result
