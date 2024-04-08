@@ -3,7 +3,6 @@ import time
 import cv2
 import numpy as np
 import pytesseract
-import pyttsx3
 from PIL import ImageGrab
 from PyQt6 import QtWidgets, QtCore, QtGui
 from deep_translator import (GoogleTranslator,
@@ -84,6 +83,8 @@ class Worker(QtCore.QObject):
 
                 self.ui.translated_text_label.setText(translated_text)
                 if self.is_text2speech_enabled:
+                    import pyttsx3
+
                     engine = pyttsx3.init()
                     engine.say(translated_text)
                     engine.runAndWait()
