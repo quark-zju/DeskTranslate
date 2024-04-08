@@ -1,3 +1,8 @@
+In this fork, an "OllamaTranslator" was added to use a local ollama instance for offline translation.
+
+----
+
+
 # Welcome to DeskTranslate!
 
 ![](image/DeskTranslate.gif)
