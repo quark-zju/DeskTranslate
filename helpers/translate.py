@@ -64,12 +64,17 @@ class Ui_translateWindow(QtWidgets.QMainWindow):
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("translateWindow", "DeskTranslator - Translating"))
+        self.setWindowTitle(_translate("translateWindow", "DeskTranslator"))
         self.translated_text_label.setText(_translate("translateWindow", "Translated text here"))
 
     def closeEvent(self, event):
         self.worker.stop_running()
 
+    def set_title(self, title: str=''):
+        if title:
+            self.setWindowTitle(f'DeskTranslator - {title}')
+        else:
+            self.setWindowTitle('DeskTranslator')
 
 if __name__ == "__main__":
     import sys

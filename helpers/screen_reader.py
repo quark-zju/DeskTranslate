@@ -49,6 +49,7 @@ class Worker(QtCore.QObject):
                 continue
 
             if self.current_extracted_text != new_extracted_text and new_extracted_text:
+                self.ui.set_title('Translating')
                 print(f"Translating: [{new_extracted_text}] of len[{len(new_extracted_text)}]")
                 self.current_extracted_text = new_extracted_text
 
@@ -102,6 +103,8 @@ class Worker(QtCore.QObject):
                     engine = pyttsx3.init()
                     engine.say(translated_text)
                     engine.runAndWait()
+
+            self.ui.set_title('')
 
             time.sleep(1)
 
