@@ -1,8 +1,11 @@
 import functools
+import os
 
 _cache = {}
 
-def translate(text: str, set_pending=None, prompt='将下文翻译成中文：', model='qwen') -> str:
+_default_model = os.getenv('DEFAULT_MODEL', 'qwen:7b')
+
+def translate(text: str, set_pending=None, prompt='将下文翻译成中文：', model=_default_model) -> str:
     text = text.strip()
 
     cached = _cache.get(text)
