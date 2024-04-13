@@ -44,12 +44,12 @@ class Worker(QtCore.QObject):
             print(f"EXTRACTED TEXT: [{new_extracted_text}]")
 
             if len(new_extracted_text) < 1 or len(new_extracted_text) > 4999:
-                time.sleep(0.5)
+                time.sleep(0.3)
                 continue
 
             if self.last_extracted_text != new_extracted_text:
                 self.last_extracted_text = new_extracted_text
-                time.sleep(0.3)
+                time.sleep(0.2)
                 continue
 
             if self.current_extracted_text != new_extracted_text and new_extracted_text:
@@ -110,7 +110,7 @@ class Worker(QtCore.QObject):
 
             self.ui.set_title('')
 
-            time.sleep(1)
+            time.sleep(0.2)
 
 
 class MyWidget(QtWidgets.QWidget):
