@@ -5,6 +5,8 @@ import numpy as np
 import pytesseract
 from PIL import ImageGrab
 from PyQt6 import QtWidgets, QtCore, QtGui
+from PyQt6.QtCore import QPoint
+import json
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -127,6 +129,22 @@ class MyWidget(QtWidgets.QWidget):
         self.setWindowOpacity(0.3)
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         self.show()
+        self.is_empty_selection = True
+        self.load_config()
+
+    def save_config(self):
+        with open('snap-config.json', 'w') as f:
+            json.dump([self.begin.x(), self.begin.y(), self.end.x(), self.end.y()], f)
+
+    def load_config(self):
+        try:
+            with open('snap-config.json', 'r') as f:
+                data = json.load(f)
+                self.begin = QPoint(data[0], data[1])
+                self.end   = QPoint(data[2], data[3])
+            self.is_empty_selection = False
+        except Exception:
+            pass
 
     def paintEvent(self, event):
         qp = QtGui.QPainter(self)
@@ -145,6 +163,8 @@ class MyWidget(QtWidgets.QWidget):
 
     def mouseReleaseEvent(self, event):
         self.close()
+        self.save_config()
+        self.is_empty_selection = False
 
     def closeEvent(self, event):
         QtWidgets.QApplication.setOverrideCursor(

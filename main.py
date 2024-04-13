@@ -48,15 +48,13 @@ class Ui_MainWindow(object):
     translator_engine = "OllamaTranslator"
 
     def on_click_select_borders(self):
-        global borders_selected
-        borders_selected = True
         QtWidgets.QApplication.setOverrideCursor(
             QtGui.QCursor(QtCore.Qt.CursorShape.CrossCursor)
         )
         snip_window.show()
 
     def on_click_openTranslateWin(self):
-        if not borders_selected:
+        if snip_window.is_empty_selection:
             QMessageBox.information(None, "Please Select Borders",
                                     "<html><body><p style='color: black;'>Please select the borders first!</p></body></html>")
             return
@@ -499,7 +497,6 @@ if __name__ == "__main__":
     # Snip window
     snip_window = screen_reader.MyWidget()
     snip_window.hide()
-    borders_selected = False
 
     # Main window
     MainWindow = QtWidgets.QMainWindow()
