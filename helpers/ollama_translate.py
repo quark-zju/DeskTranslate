@@ -6,7 +6,7 @@ _cache = {}
 _default_model = os.getenv('DEFAULT_MODEL', 'qwen:7b')
 
 def translate(text: str, set_pending=None, prompt='将下文翻译成中文：', model=_default_model) -> str:
-    text = text.strip()
+    text = text.strip().replace('|', 'I')
 
     cached = _cache.get(text)
     if cached:
