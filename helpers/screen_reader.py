@@ -45,7 +45,12 @@ class Worker(QtCore.QObject):
             new_extracted_text = " ".join(new_extracted_text.split())
             print(f"EXTRACTED TEXT: [{new_extracted_text}]")
 
-            if len(new_extracted_text) < 1 or len(new_extracted_text) > 4999:
+            if len(new_extracted_text) < 6 or len(new_extracted_text) > 4999:
+                time.sleep(0.3)
+                continue
+
+            words = new_extracted_text.split()
+            if len(words) < 3 or (sum(len(w) for w in words) * 1.0 / len(words)) <= 2:
                 time.sleep(0.3)
                 continue
 
